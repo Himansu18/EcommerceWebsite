@@ -54,6 +54,7 @@ app.get("/api/products/category/:category",async (req,res)=>{
   try{
     let {category}=req.params;
     let categoryData=await productModel.find({category:category});
+    console.log(categoryData);
     res.render("ProductPages/CategoryPage.ejs",{categoryData});
     }catch(e){
     res.render(e.message)
