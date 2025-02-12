@@ -1,11 +1,11 @@
 <% layout('boilerplate') -%>
 <body>
-    <h1>Home Page</h1>
-    <% for(let data of allData){ %>
-                
+    <div class="bodycolor">
+        <h1>Home Page</h1>
+        <% for(let data of allData){ %>  
         <div>
             <p><%=data.name%></p>
         </div>
-    
-    <% } %>
+        <% } %>
+    </div>
 </body>
