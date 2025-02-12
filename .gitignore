@@ -22,12 +22,12 @@ build/
 .DS_Store
 *.swp
 
-# Frontend specific ignores
-# frontend/node_modules/
-# frontend/dist/
-# frontend/.vite/
+#Frontend specific ignores
+Frontend/node_modules/
+Frontend/dist/
+Frontend/.vite/
 
 # Backend specific ignores
-backend/node_modules/
-backend/dist/
+Backend/node_modules/
+Backend/dist/
 backend/uploads/
