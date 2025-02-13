@@ -8,13 +8,19 @@
                 <div class="flex flex-col mt-10 ">
                     <h2 class="mt-4 text-xl"><%= idData.name %></h2>
                     <p class="mt-4 text-sm"><%= idData.description %></p>
+                    <div class="flex items-center mt-2 ">
+                        <% for (let i = 0; i < Math.floor(idData.rating); i++) { %>
+                            <i class="fas fa-star"></i>
+                        <% } %>
+                        <% if (idData.rating % 1 !== 0) { %>
+                            <i class="fas fa-star-half-alt"></i>
+                        <% } %>
+                    </div>
                     <p class="text-sm mt-4">Rs.<%= idData.price.toLocaleString("en-In") %>.00</p>
                     <form action="">
                         <button class="btn mt-4">Add to cart</button>
                     </form>
-                    
                 </div>
-
             </div>
     </div>
     <!-- <div class="container2 my-10">

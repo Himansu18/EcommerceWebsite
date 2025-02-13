@@ -61,6 +61,14 @@ app.get("/api/products/category/:category",async (req,res)=>{
     res.render(e.message)
   }
 })
+app.get("/api/products/all/allproducts",async (req,res)=>{
+  try{
+    let allData=await productModel.find({});
+    res.render("ProductPages/AllProductPage.ejs",{allData});
+    }catch(e){
+    res.send(e.message)
+  }
+})
 
 app.listen(process.env.PORT, () => {
   console.log(`app listening on port 8080`)

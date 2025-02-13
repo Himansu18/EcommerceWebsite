@@ -1,31 +1,48 @@
 <% layout('boilerplate') -%>
 <body class="bodycolor">
     <div class="container1 flex flex-col items-center text-center">
-        <div class="h-120 w-220  border-solid border-1  mt-10 flex justify-center items-center text-center ">
-            <a href="" class="btn">Shop Now</a>
+        <div class="h-120 w-220  border-solid border-1  mt-10 flex flex-col justify-center items-center text-center">
+            <div>
+                <h3 class="text-4xl font-semibold">Visit new trendy stylish shirts</h3>
+            </div>
+            <div class="mt-9">
+                <a href="/api/products/category/shirt" class="btn ">Shop Now</a>
+            </div>
         </div>
-        <div class="h-120 w-220  border-solid border-1 mt-10 flex justify-center items-center text-center">
-            <a href="" class="btn">Shop Now</a>
+        <div class="h-120 w-220  border-solid border-1 mt-10 flex flex-col justify-center items-center text-center">
+            <div>
+                <h3 class="text-4xl font-semibold">Visit Trousers collection</h3>
+            </div>
+            <div class="mt-9">
+                <a href="/api/products/category/pant" class="btn ">Shop Now</a>
+            </div>
         </div>
-        <div class="h-120 w-220  border-solid border-1 mt-10 flex justify-center items-center text-center">
-            <a href="" class="btn">Shop Now</a>
+        <div class="h-120 w-220  border-solid border-1 mt-10 flex flex-col justify-center items-center text-center">
+            <div>
+                <h3 class="text-4xl font-semibold">Checkout Shoes collection</h3>
+            </div>
+            <div class="mt-9">
+                <a href="/api/products/category/shoes" class="btn ">Shop Now</a>
+            </div>
         </div>
     </div>
     <div class="container2 my-10">
         <div class="mx-20">
-            <h1 class="text-2xl">All Products</h1>
+            <h1 class="text-4xl font-semibold">All Products</h1>
            <div class="flex flex-wrap justify-start">
             <% for (let data of allData.slice(0, 10)) { %>
-                <div class="m-2 card">
-                    <img src="<%= data.image %>" alt="img" class="h-70 w-70 object-cover">
-                    <p class="font-medium"><%= data.name %></p>
-                    <p class="text-sm">Rs.<%= data.price.toLocaleString("en-In") %>.00
-                    </p>
-                </div>
+                <a href="/api/products/<%= data._id %>">
+                    <div class="m-2 card">
+                        <img src="<%= data.image %>" alt="img" class="h-70 w-70 object-cover">
+                        <p class="font-medium"><%= data.name %></p>
+                        <p class="text-sm">Rs.<%= data.price.toLocaleString("en-In") %>.00
+                        </p>
+                    </div>
+                </a>
                 <br>
             <% } %>
            </div>
-           <form action="" class="mt-10">
+           <form action="/api/products/all/allproducts" class="mt-10">
             <button type="submit" class="btn " >View All</button>
            </form>
         </div>

@@ -2,9 +2,9 @@
 <body class="bodycolor">
     <div class="container2 my-10">
         <div class="mx-20">
-            <h1 class="text-2xl font-medium">Category:<%=categoryData[0]?.category%></h1>
+            <h1 class="text-4xl font-semibold">All Products</h1>
            <div class="flex flex-wrap justify-start">
-            <% for (let data of categoryData) { %>
+            <% for (let data of allData) { %>
                 <a href="/api/products/<%= data._id %>">
                     <div class="m-2 card">
                         <img src="<%= data.image %>" alt="img" class="h-70 w-70 object-cover">
@@ -13,12 +13,9 @@
                         </p>
                     </div>
                 </a>
+                <br>
             <% } %>
            </div>
-           <!-- <form action="" class="mt-10">
-            <button type="submit" class=" hover:bg-black-300" >View All</button>
-           </form> -->
         </div>
     </div>
-    
 </body>
