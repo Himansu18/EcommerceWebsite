@@ -45,7 +45,9 @@ app.get("/api/products/:id",async (req,res)=>{
   try{
     let {id}=req.params;
     let idData=await productModel.findById({_id:id});
-    res.render("ProductPages/IdPage.ejs",{idData});
+    let allData=await productModel.find({});
+    res.render("ProductPages/IdPage.ejs",{idData,allData});
+    
     }catch(e){
     res.send(e.message)
   }

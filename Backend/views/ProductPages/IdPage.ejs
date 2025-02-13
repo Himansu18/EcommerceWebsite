@@ -1,3 +1,39 @@
 <% layout('boilerplate') -%>
-<h1>Id Page</h1>
-<p><%= idData %></p>
+<body class="bodycolor">
+    <div class="container1 mx-30 my-20 bg-gray-100">
+            <div class="grid grid-cols-3 gap-10">
+                <div>
+                    <img src="<%= idData.image %>" alt="image" class="h-100 w-100 object-cover">
+                </div>
+                <div class="flex flex-col mt-10 ">
+                    <h2 class="mt-4 text-xl"><%= idData.name %></h2>
+                    <p class="mt-4 text-sm"><%= idData.description %></p>
+                    <p class="text-sm mt-4">Rs.<%= idData.price.toLocaleString("en-In") %>.00</p>
+                    <form action="">
+                        <button class="btn mt-4">Add to cart</button>
+                    </form>
+                    
+                </div>
+
+            </div>
+    </div>
+    <!-- <div class="container2 my-10">
+        <div class="mx-20">
+            <h1 class="text-2xl">All Products</h1>
+           <div class="flex flex-wrap justify-start">
+            <% for (let data of allData.slice(0, 10)) { %>
+                <div class="m-2 card">
+                    <img src="<%= data.image %>" alt="img" class="h-70 w-70 object-cover">
+                    <p class="font-medium"><%= data.name %></p>
+                    <p class="text-sm">Rs.<%= data.price.toLocaleString("en-In") %>.00
+                    </p>
+                </div>
+                <br>
+            <% } %>
+           </div>
+           <form action="" class="mt-10">
+            <button type="submit" class="btn " >View All</button>
+           </form>
+        </div>
+    </div> -->
+</body>

@@ -2,15 +2,14 @@
 <body class="bodycolor">
     <div class="container2 my-10">
         <div class="mx-20">
-            <h1 class="text-2xl font-medium">Category:<%=categoryData[0].category%></h1>
+            <h1 class="text-2xl font-medium">Category:<%=categoryData[0]?.category%></h1>
            <div class="flex flex-wrap justify-start">
             <% for (let data of categoryData) { %>
                 <div class="m-2 card">
                     <img src="<%= data.image %>" alt="img" class="h-70 w-70 object-cover">
                     <p class="font-medium"><%= data.name %></p>
-                    <p>Rs.<%= data.price.toLocaleString("en-In") %>.00</p>
+                    <p class="text-sm">Rs.<%= data.price.toLocaleString("en-In") %>.00</p>
                 </div>
-                <br>
             <% } %>
            </div>
            <!-- <form action="" class="mt-10">
