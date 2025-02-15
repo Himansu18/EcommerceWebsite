@@ -70,6 +70,13 @@ app.get("/api/products/all/allproducts",async (req,res)=>{
   }
 })
 
+app.get("/api/user/signin",(req,res)=>{
+  res.render("UserPages/SignIn.ejs");
+})
+app.get("/api/user/login",(req,res)=>{
+  res.render("UserPages/LogIn.ejs");
+})
+
 app.listen(process.env.PORT, () => {
   console.log(`app listening on port 8080`)
 })
