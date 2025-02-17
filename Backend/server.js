@@ -27,6 +27,8 @@ app.use(express.static("public"))
 app.use(express.urlencoded({extended:true}));
 app.use(express.json())
 app.engine('ejs', engine);
+const flash = require('connect-flash');
+
 
 app.use(session({
   secret: 'mysupersecret',
@@ -38,15 +40,23 @@ app.use(session({
     maxAge:1000*60*60*24*3
   }
 }));
+app.use(flash());
 ``
 
+app.use((req,res,next)=>{
+  res.locals.info=req.flash("info");
+  next()
+})
+
 app.get('/', (req, res) => {
+  req.flash('info',"This is a flash info");
   res.send('Hello World!')
 })
 app.get("/api/products",async (req,res)=>{
   try{
     let allData=await productModel.find({});
     //console.log(allData)
+    req.flash('info',"This is a flash info");
     res.render("ProductPages/HomePage.ejs",{allData});
     }catch(e){
     res.send(e.message)
