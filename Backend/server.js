@@ -6,6 +6,8 @@ const dotenv=require("dotenv")
 const main=require("./config/db")
 const path=require('path');
 const engine=require("ejs-mate")
+const session = require('express-session')
+
 //config dot env
 dotenv.config();
 
@@ -26,8 +28,17 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json())
 app.engine('ejs', engine);
 
-
-
+app.use(session({
+  secret: 'mysupersecret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { 
+    httpOnly:true,
+    expires:Date.now()+1000*60*60*24*3,
+    maxAge:1000*60*60*24*3
+  }
+}));
+``
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
