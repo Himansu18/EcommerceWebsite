@@ -3,22 +3,22 @@
     <div class="flex justify-center ">
    <div class="h-120 w-120 my-20 flex flex-col  justify-center items-center border-solid border-2">
         <h1 class="text-4xl font-semibold">Log in</h1>
-        <form action="" class="mt-10">
+        <form action="/api/user/login" class="mt-10" method="post">
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
                   Username
                 </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="username">
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="username" name="username">
               </div>
               <div class="mb-6">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
                   Password
                 </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="password">
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="password" name="password">
               </div>
             <a href="/api/user/signin" class=" hover:underline">new here</a>
             <br>
-            <button class="mt-10 btn h-13 w-90">Sign In</button>
+            <button class="mt-10 btn h-13 w-90">Log In</button>
         </form>
    </div>
 </div>

@@ -1,8 +1,14 @@
 <% layout('boilerplate') -%>
 <body class="bodycolor">
-    <% if (info.length>0) { %>
+    <% if (success.length>0) { %>
         <div class="flash-message h-20 w-100">
-            <span class="text-2xl"><%= info %></span>
+            <span class="text-2xl"><%= success %></span>
+            <button class="close-btn" onclick="this.parentElement.style.display='none'">&times;</button>
+        </div>
+    <% } %>
+    <% if (error.length>0) { %>
+        <div class="flash-message h-20 w-100">
+            <span class="text-2xl"><%= success %></span>
             <button class="close-btn" onclick="this.parentElement.style.display='none'">&times;</button>
         </div>
     <% } %>

@@ -1,14 +1,12 @@
 const mongoose = require("mongoose");
+const passportLocalMongoose = require("passport-local-mongoose");
 
 const userSchema = new mongoose.Schema(
   {
     email: {
       type: String,
       required: true,
-      unique: true,
-    },
-    address: {
-      type: String,
+      unique: true,  // Ensure emails are unique
     },
     cart: [
       {
@@ -31,5 +29,8 @@ const userSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+// Explicitly set `usernameField` to "username"
+userSchema.plugin(passportLocalMongoose, { usernameField: "username" });
 
 module.exports = mongoose.model("userModel", userSchema);

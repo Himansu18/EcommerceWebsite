@@ -7,6 +7,8 @@ const main=require("./config/db")
 const path=require('path');
 const engine=require("ejs-mate")
 const session = require('express-session')
+const passport=require('passport')
+const LocalStrategy=require('passport-local');
 
 //config dot env
 dotenv.config();
@@ -42,21 +44,28 @@ app.use(session({
 }));
 app.use(flash());
 ``
+//passport autherntication
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(userModel.authenticate()));
+passport.serializeUser(userModel.serializeUser());
+passport.deserializeUser(userModel.deserializeUser());
+
 
 app.use((req,res,next)=>{
   res.locals.info=req.flash("info");
+  res.locals.success=req.flash("success");
+  res.locals.error=req.flash("error");
   next()
 })
-
 app.get('/', (req, res) => {
-  req.flash('info',"This is a flash info");
   res.send('Hello World!')
 })
 app.get("/api/products",async (req,res)=>{
   try{
     let allData=await productModel.find({});
     //console.log(allData)
-    req.flash('info',"This is a flash info");
+    //console.log(req.user);
     res.render("ProductPages/HomePage.ejs",{allData});
     }catch(e){
     res.send(e.message)
@@ -94,9 +103,71 @@ app.get("/api/products/all/allproducts",async (req,res)=>{
 app.get("/api/user/signin",(req,res)=>{
   res.render("UserPages/SignIn.ejs");
 })
+app.post("/api/user/signin", async (req, res) => {
+  try {
+    let { email, username, password } = req.body;
+    // Check if username already exists
+    let existingUser = await userModel.findOne({ username });
+    if (existingUser) {
+      req.flash("error", "Username already exists. Choose a different one.");
+      return res.redirect("/api/user/signin");
+    }
+    let newUser = new userModel({ email, username });
+    let resUser = await userModel.register(newUser, password);
+    req.logIn(resUser, (err) => {
+      if (err) {
+        console.log("Login Error:", err);
+        req.flash("error", "Login failed. Try again.");
+        return res.redirect("/api/user/signin");
+      }
+      req.flash("success", "Welcome!");
+      return res.redirect("/api/products");
+    });
+  } catch (e) {
+    console.log("Registration Error:", e);
+    req.flash("error", e.message);
+    res.redirect("/api/user/signin");
+  }
+});
+
+app.get('/api/user/logout', function(req, res, next) {
+  req.logout(function(err) {
+    if (err) { 
+      req.flash("error","Cannot loggedout");
+      res.redirect('/api/products');
+     }
+    req.flash("success","Logged out Successfully");
+    res.redirect('/api/products');
+  });
+});
+
 app.get("/api/user/login",(req,res)=>{
   res.render("UserPages/LogIn.ejs");
 })
+app.post('/api/user/login', (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    if (err) {
+      console.log("Login Error:", err);
+      req.flash("error", "Login failed.");
+      return res.redirect('/api/user/login');
+    }
+    if (!user) {
+      console.log("Login Failed:", info);
+      req.flash("error", "Invalid username or password.");
+      return res.redirect('/api/user/login');
+    }
+    req.logIn(user, (err) => {
+      if (err) {
+        console.log("Session Error:", err);
+        req.flash("error", "Session creation failed.");
+        return res.redirect('/api/user/login');
+      }
+      req.flash("success", "Welcome back!");
+      return res.redirect("/api/products");
+    });
+  })(req, res, next);
+});
+
 
 app.listen(process.env.PORT, () => {
   console.log(`app listening on port 8080`)
