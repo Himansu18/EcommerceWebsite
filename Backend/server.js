@@ -59,6 +59,7 @@ app.use((req,res,next)=>{
   res.locals.info=req.flash("info");
   res.locals.success=req.flash("success");
   res.locals.error=req.flash("error");
+  res.locals.user=req.user;
   next()
 })
 app.get('/', (req, res) => {

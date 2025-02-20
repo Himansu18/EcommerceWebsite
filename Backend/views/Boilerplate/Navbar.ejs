@@ -1,10 +1,13 @@
 <div class="h-20 bodycolor flex justify-between text-center items-center">
    <div> <a class="text-lg ml-4" href="/api/products">LOGO</a></div>
    <div>
-    <a href="/api/user/signin" class="mr-4  hover:underline">Sign In</a>
-    <a href="/api/user/login"class="mr-4  hover:underline">Log In</a>
-    <a href="/api/user/logout"class="mr-4  hover:underline">Log Out</a>
-    <i class="fa-regular fa-circle-user mr-4"></i>
+    <% if (user) { %>
+        <a href="/api/user/logout"class="mr-4  hover:underline">Log Out</a>
+        <i class="fa-regular fa-circle-user mr-4"></i>
+    <% }else{ %>
+        <a href="/api/user/signin" class="mr-4  hover:underline">Sign In</a>
+        <a href="/api/user/login"class="mr-4  hover:underline">Log In</a>
+    <% } %>
     </div>
 </div>
 <hr>
