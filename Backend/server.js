@@ -10,6 +10,7 @@ const session = require('express-session')
 const passport=require('passport')
 const LocalStrategy=require('passport-local');
 const flash = require('connect-flash');
+const IsUserAuthenticate=require('./controllers/IsUserAuthenticate');
 
 const productRoute=require("./routes/productRoutes");
 const userRoute=require("./routes/userRoutes");
@@ -20,7 +21,8 @@ dotenv.config();
 //Models required
 
 const userModel=require("./models/userModel")
-const adminModel=require("./models/adminModel")
+const adminModel=require("./models/adminModel");
+const productModel = require('./models/productModel');
 
 //db connection
 main();
@@ -69,6 +71,7 @@ app.get('/', (req, res) => {
 //Routes
 app.use('/api/products',productRoute);
 app.use('/api/user',userRoute);
+
 
 
 app.listen(process.env.PORT, () => {

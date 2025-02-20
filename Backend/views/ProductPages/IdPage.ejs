@@ -17,7 +17,7 @@
                         <% } %>
                     </div>
                     <p class="text-sm mt-4">Rs.<%= idData.price.toLocaleString("en-In") %>.00</p>
-                    <form action="">
+                    <form action="/api/<%= idData.id %>/cart" method="post">
                         <button class="btn mt-4">Add to cart</button>
                     </form>
                 </div>

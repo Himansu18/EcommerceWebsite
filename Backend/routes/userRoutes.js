@@ -74,6 +74,20 @@ router.get("/signin",(req,res)=>{
       });
     })(req, res, next);
   });
+  router.post('/api/:id/cart',IsUserAuthenticate,async(req,res)=>{
+    try{
+    let {id}=req.params;
+    let product=await productModel.findById(id);
+    let userId=req.user.id;
+    let user=await userModel.findById(userId);
+    let result=await user.cart.push(product);
+    user.save();
+    req.flash("success","Added to cart");
+    res.redirect('/api/products');
+    }catch(e){
+      res.send(e.message);
+    }
+  })
 
 module.exports = router;
   

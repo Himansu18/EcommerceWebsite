@@ -6,10 +6,11 @@ const AllProduct = require('../controllers/ProductControllers/AllProduct')
 const IdData = require('../controllers/ProductControllers/IdData')
 const CategoryData = require('../controllers/ProductControllers/CategoryData')
 const AllProductHome = require('../controllers/ProductControllers/AllProductHome')
+const IsUserAuthenticate = require('../controllers/IsUserAuthenticate')
 
 
-router.get("/",AllProductHome)
-router.get("/:id",IdData)
+router.get("/",AllProductHome);
+router.get("/:id",IdData);
 router.get("/category/:category",CategoryData);
-router.get("/all/allproducts",AllProduct)
+router.get("/all/allproducts",AllProduct);
 module.exports = router;
