@@ -1,18 +1,18 @@
 <% layout('boilerplate') -%>
 <body class="bodycolor">
-    <div class="flex flex-col items-center justify-center text-center">
-        <div class="size-96 bg-red-200 flex-col flex justify-center text-center">
-            <i class="fa-solid fa-user"></i>
+    <div class="flex flex-col items-center justify-center my-20 ">
+        <div class="size-200 flex-col flex p-30 border-1">
+            <h1 class=" text-4xl font-semibold ">User Details</h1>
+            <hr class="mt-10">
+            <p class="mt-10 font-semibold text-xl">username:<%= user.username%></p>
+            <p class="mt-5 font-semibold text-xl">email:<%= user.email%></p>
+            <hr class="mt-10">
             <ul>
-                <li>name</li>
-                <li>email</li>
-            </ul>
-        </div>
-        <div class="size-96 bg-blue-200 ">
-            <ul>
-                <li>Cart</li>
+                <li class="my-10 hover:underline"><a href="/api/user/wishlist">Wishlist</a></li>
                 <hr>
-                <li>Orders</li>
+                <li class="my-10 hover:underline"><a href="/api/user/">Cart</a></li>
+                <hr>
+                <li class="my-10 hover:underline"><a href="">Orders</a></li>
                 <hr>
             </ul>
         </div>

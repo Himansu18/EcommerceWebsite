@@ -9,12 +9,10 @@ const userSchema = new mongoose.Schema(
       unique: true,  // Ensure emails are unique
     },
     wishlist: [
-      {
-        productId: {
+        {
           type: mongoose.Schema.Types.ObjectId,
           ref: "productModel",
         }
-      },
     ],
     cart: [
       {
@@ -26,13 +24,13 @@ const userSchema = new mongoose.Schema(
           type: Number,
           default: 1,
         },
-      },
+      }
     ],
     orders: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "productModel",
-      },
+      }
     ],
   },
   { timestamps: true }

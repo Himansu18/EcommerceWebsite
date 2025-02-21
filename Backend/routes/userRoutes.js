@@ -4,7 +4,7 @@ const app=express()
 const userModel=require("../models/userModel")
 const passport = require('passport');
 
-
+const IsUserAuthenticate=require("../controllers/IsUserAuthenticate");
 
 router.get("/signin",(req,res)=>{
     res.render("UserPages/SignIn.ejs");
@@ -74,8 +74,14 @@ router.get("/signin",(req,res)=>{
       });
     })(req, res, next);
   });
-router.get('/profile',(req,res)=>{
+router.get('/profile',IsUserAuthenticate,async(req,res)=>{
   res.render("UserPages/Profile.ejs");
+})
+router.get('/wishlist',async(req,res)=>{
+  let userId=req.user.id;
+  let userr=await userModel.findOne({_id:userId}).populate('wishlist');
+  const wishListProducts=userr.wishlist;
+  res.render("UserPages/WishList.ejs",{wishListProducts});
 })
   
 
