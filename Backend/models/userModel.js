@@ -8,6 +8,14 @@ const userSchema = new mongoose.Schema(
       required: true,
       unique: true,  // Ensure emails are unique
     },
+    wishlist: [
+      {
+        productId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "productModel",
+        }
+      },
+    ],
     cart: [
       {
         productId: {

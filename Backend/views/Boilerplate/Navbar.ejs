@@ -3,7 +3,7 @@
    <div>
     <% if (user) { %>
         <a href="/api/user/logout"class="mr-6  hover:underline">Log Out</a>
-        <i class="fa-regular fa-circle-user mr-6"></i>
+        <a href="/api/user/profile"><i class="fa-regular fa-circle-user mr-6"></i></a>
     <% }else{ %>
         <a href="/api/user/signin" class="mr-6  hover:underline">Sign In</a>
         <a href="/api/user/login"class="mr-6  hover:underline">Log In</a>
