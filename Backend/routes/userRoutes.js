@@ -5,85 +5,21 @@ const userModel=require("../models/userModel")
 const passport = require('passport');
 
 const IsUserAuthenticate=require("../controllers/IsUserAuthenticate");
+const RenderSignIn = require('../controllers/UserControllers/RenderSignIn');
+const SignIn = require('../controllers/UserControllers/SignIn');
+const LogOut = require('../controllers/UserControllers/LogOut');
+const RenderLogIn = require('../controllers/UserControllers/RenderLogIn');
+const LogIn = require('../controllers/UserControllers/LogIn');
+const RenderProfile = require('../controllers/UserControllers/RenderProfile');
+const WishList = require('../controllers/UserControllers/WishList');
 
-router.get("/signin",(req,res)=>{
-    res.render("UserPages/SignIn.ejs");
-  })
-  router.post("/signin", async (req, res) => {
-    try {
-      let { email, username, password } = req.body;
-      // Check if username already exists
-      let existingUser = await userModel.findOne({ username });
-      if (existingUser) {
-        req.flash("error", "Username already exists. Choose a different one.");
-        return res.redirect("/api/user/signin");
-      }
-      let newUser = new userModel({ email, username });
-      let resUser = await userModel.register(newUser, password);
-      req.logIn(resUser, (err) => {
-        if (err) {
-          console.log("Login Error:", err);
-          req.flash("error", "Login failed. Try again.");
-          return res.redirect("/api/user/signin");
-        }
-        req.flash("success", "Welcome!");
-        return res.redirect("/api/products");
-      });
-    } catch (e) {
-      console.log("Registration Error:", e);
-      req.flash("error", e.message);
-      res.redirect("/api/user/signin");
-    }
-  });
-  
-  router.get('/logout', function(req, res, next) {
-    req.logout(function(err) {
-      if (err) { 
-        req.flash("error","Cannot loggedout");
-        res.redirect('/api/products');
-       }
-      req.flash("success","Logged out Successfully");
-      res.redirect('/api/products');
-    });
-  });
-  
-  router.get("/login",(req,res)=>{
-    res.render("UserPages/LogIn.ejs");
-  })
-  router.post('/login', (req, res, next) => {
-    passport.authenticate('local', (err, user, info) => {
-      if (err) {
-        console.log("Login Error:", err);
-        req.flash("error", "Login failed.");
-        return res.redirect('/api/user/login');
-      }
-      if (!user) {
-        console.log("Login Failed:", info);
-        req.flash("error", "Invalid username or password.");
-        return res.redirect('/api/user/login');
-      }
-      req.logIn(user, (err) => {
-        if (err) {
-          console.log("Session Error:", err);
-          req.flash("error", "Session creation failed.");
-          return res.redirect('/api/user/login');
-        }
-        
-        req.flash("success", "Welcome back!");
-        return res.redirect("/api/products");
-      });
-    })(req, res, next);
-  });
-router.get('/profile',IsUserAuthenticate,async(req,res)=>{
-  res.render("UserPages/Profile.ejs");
-})
-router.get('/wishlist',async(req,res)=>{
-  let userId=req.user.id;
-  let userr=await userModel.findOne({_id:userId}).populate('wishlist');
-  const wishListProducts=userr.wishlist;
-  res.render("UserPages/WishList.ejs",{wishListProducts});
-})
-  
+router.get("/signin",RenderSignIn);
+router.post("/signin", SignIn);
+router.get('/logout', LogOut);
+router.get("/login",RenderLogIn);
+router.post('/login', LogIn);
+router.get('/profile',IsUserAuthenticate,RenderProfile);
+router.get('/wishlist',WishList);
 
 module.exports = router;
   

@@ -1,0 +1,24 @@
+<% layout('boilerplate') -%>
+<body class="bodycolor">
+    <div class="container2 my-10">
+        <div class="mx-20">
+            <h1 class="text-4xl font-semibold">wishlist</h1>
+           <div class="flex flex-wrap justify-start">
+            <% for (let data of cartProducts) { %>
+                <a href="/api/products/<%= data._id %>">
+                    <div class="m-2 card">
+                        <img src="<%= data.image %>" alt="img" class="h-70 w-70 object-cover">
+                        <p class="font-medium"><%= data.name %></p>
+                        <p class="text-sm">Rs.<%= data.price.toLocaleString("en-In") %>.00
+                        </p>
+                        <form action="/api/products/<%= data.id %>/cart" method="post">
+                            <button class="btn mt-4">Add to cart</button>
+                        </form>
+                    </div>
+                </a>
+                <br>
+            <% } %>
+           </div>
+        </div>
+    </div>
+</body>
