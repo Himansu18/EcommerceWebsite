@@ -1,24 +1,43 @@
 <% layout('boilerplate') -%>
-<body class="bodycolor">
-    <div class="container2 my-10">
-        <div class="mx-20">
-            <h1 class="text-4xl font-semibold">wishlist</h1>
-           <div class="flex flex-wrap justify-start">
-            <% for (let data of cartProducts) { %>
-                <a href="/api/products/<%= data._id %>">
-                    <div class="m-2 card">
-                        <img src="<%= data.image %>" alt="img" class="h-70 w-70 object-cover">
-                        <p class="font-medium"><%= data.name %></p>
-                        <p class="text-sm">Rs.<%= data.price.toLocaleString("en-In") %>.00
-                        </p>
-                        <form action="/api/products/<%= data.id %>/cart" method="post">
-                            <button class="btn mt-4">Add to cart</button>
-                        </form>
-                    </div>
-                </a>
-                <br>
-            <% } %>
-           </div>
+
+    <body class="bodycolor">
+        <div class="container2 my-10">
+            <div class="mx-20">
+                <h1 class="text-4xl font-semibold mb-10">cart</h1>
+                <div class="flex flex-wrap justify-start">
+                    <% for (let data of cartProducts) { %>
+                        <a href="/api/products/<%= data._id %>">
+                            <div class="m-2 card">
+                                <img src="<%= data.image %>" alt="img" class="h-70 w-70 object-cover">
+                                <p class="font-medium">
+                                    <%= data.name %>
+                                </p>
+                                <p class="text-sm">Rs.<%= data.price.toLocaleString("en-In") %>.00
+                                </p>
+                            </a>
+                                <form action="/api/products/<%= data.id %>/cart" method="post">
+                                    <label for="quantity" class=" text-md font-medium text-gray-900 ">Quantity:</label>
+                                    <select id="quantity" name="quantity" class="w-15 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded pl-3 pr-8 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md appearance-none cursor-pointer">
+                                        <option value="1" selected>1</option>
+                                        <option value="2">2</option>
+                                        <option value="3" >3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </form>
+                            </div>
+                        
+                        <br>
+                        <% } %>
+                </div>
+                <form action="/api/user/order"class="mt-20">
+                    <Button class="btn">Order</Button>
+                </form>
+            </div>
         </div>
-    </div>
-</body>
+    </body>

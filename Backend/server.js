@@ -14,6 +14,7 @@ const IsUserAuthenticate=require('./controllers/IsUserAuthenticate');
 
 const productRoute=require("./routes/productRoutes");
 const userRoute=require("./routes/userRoutes");
+const adminRoute=require("./routes/adminRoutes");
 
 //config dot env
 dotenv.config();
@@ -71,6 +72,7 @@ app.get('/', (req, res) => {
 //Routes
 app.use('/api/products',productRoute);
 app.use('/api/user',userRoute);
+app.use('/api/admin/',adminRoute);
 
 
 

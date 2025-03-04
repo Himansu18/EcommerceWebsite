@@ -3,11 +3,7 @@
     display: flex;
     flex-direction: column;
 } */
-.footer{
-    margin-top: auto;
-    width: 100%;
-    position: sticky-bottom;
-}
+
 .container2 {
     flex: 1; /* Pushes the footer down */
 }

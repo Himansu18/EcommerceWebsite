@@ -1,21 +1,10 @@
 <% layout('boilerplate') -%>
 <body class="bodycolor">
-    <% if (success.length>0) { %>
-        <div class="flash-message h-20 w-100">
-            <span class="text-2xl"><%= success %></span>
-            <button class="close-btn" onclick="this.parentElement.style.display='none'">&times;</button>
-        </div>
-    <% } %>
-    <% if (error.length>0) { %>
-        <div class="flash-message h-20 w-100">
-            <span class="text-2xl"><%= success %></span>
-            <button class="close-btn" onclick="this.parentElement.style.display='none'">&times;</button>
-        </div>
-    <% } %>
+    
     
 
     <div class="container1 flex flex-col items-center text-center">
-        <div class="h-120 w-220  border-solid border-1  mt-10 flex flex-col justify-center items-center text-center">
+        <div class="h-120 w-220  border-solid border-1  mt-10 flex flex-col justify-center items-center text-center blockx">
             <div>
                 <h3 class="text-4xl font-semibold">Visit new trendy stylish shirts</h3>
             </div>
@@ -23,7 +12,7 @@
                 <a href="/api/products/category/shirt" class="btn ">Shop Now</a>
             </div>
         </div>
-        <div class="h-120 w-220  border-solid border-1 mt-10 flex flex-col justify-center items-center text-center">
+        <div class="h-120 w-220  border-solid border-1 mt-10 flex flex-col justify-center items-center text-center blockx">
             <div>
                 <h3 class="text-4xl font-semibold">Visit Trousers collection</h3>
             </div>
@@ -31,7 +20,7 @@
                 <a href="/api/products/category/pant" class="btn ">Shop Now</a>
             </div>
         </div>
-        <div class="h-120 w-220  border-solid border-1 mt-10 flex flex-col justify-center items-center text-center">
+        <div class="h-120 w-220  border-solid border-1 mt-10 flex flex-col justify-center items-center text-center blockx">
             <div>
                 <h3 class="text-4xl font-semibold">Checkout Shoes collection</h3>
             </div>
