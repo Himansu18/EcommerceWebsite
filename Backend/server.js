@@ -6,6 +6,7 @@ const dotenv=require("dotenv")
 const main=require("./config/db")
 const path=require('path');
 const engine=require("ejs-mate")
+const methodOverride = require('method-override')
 const session = require('express-session')
 const passport=require('passport')
 const LocalStrategy=require('passport-local');
@@ -37,6 +38,8 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json())
 app.engine('ejs', engine);
 app.use(flash());
+app.use(express.urlencoded({ extended: true }));  // To parse form data
+app.use(methodOverride('_method'));
 
 //session added
 app.use(session({

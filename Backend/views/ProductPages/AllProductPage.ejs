@@ -7,7 +7,7 @@
             <% for (let data of allData) { %>
                 <a href="/api/products/<%= data._id %>">
                     <div class="m-2 card">
-                        <img src="<%= data.image %>" alt="img" class="h-70 w-70 object-cover">
+                        <img src="<%= data.image %>" alt="img" class="h-73 w-70 object-cover">
                         <p class="font-medium"><%= data.name %></p>
                         <p class="text-sm">Rs.<%= data.price.toLocaleString("en-In") %>.00
                         </p>
