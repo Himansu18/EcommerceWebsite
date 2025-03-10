@@ -1,0 +1,54 @@
+<% layout('boilerplate') -%>
+<body class="bodycolor">
+    <div class="flex justify-center">
+   <div class=" w-200 my-20 flex flex-col  justify-center items-center border-solid border-1 py-10">
+        <h1 class="text-4xl font-semibold">New Product</h1>
+        <form action="/api/admin/newProduct" class="mt-10" method="post">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+                  product name
+                </label>
+                <input class="shadow appearance-none border rounded w-150 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="product name" name="NewProduct[name]">
+              </div>
+              <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="description">
+                  description
+                </label>
+                <textarea rows="5" cols="" class="shadow appearance-none border rounded w-150 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="description" type="text" placeholder="Description" name="NewProduct[description]"></textarea>              
+            </div>
+              <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="price">
+                  price
+                </label>
+                <input  class="col-span-2 row-span-3 appearance-none border rounded w-150 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="price" type="text" placeholder="price" name="NewProduct[price]" >
+              </div>
+              <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="category">
+                  category
+                </label>
+                <input class="shadow appearance-none border rounded w-150 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="category" name="NewProduct[category]">
+              </div>
+              <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="stock">
+                  stock
+                </label>
+                <input class="shadow appearance-none border rounded w-150 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="stock" type="text" placeholder="stock" name="NewProduct[stock]" >
+              </div>
+              <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="rating">
+                  rating
+                </label>
+                <input class="shadow appearance-none border rounded w-150 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="rating" type="text" placeholder="rating" name="NewProduct[rating]">
+              </div>
+              <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="imagelink">
+                  imagelink
+                </label>
+                <input class="shadow appearance-none border rounded w-150 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="imagelink" type="text" placeholder="image link" name="NewProduct[image]">
+              </div>              
+            <br>
+            <button class="mt-5 btn" type="submit">Add</button>
+        </form>
+   </div>
+</div>
+</body>
